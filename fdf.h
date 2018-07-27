@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 17:41:46 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/07/25 18:55:01 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/07/27 17:11:12 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_point
 	int			x;
 	int			y;
 	int			z;
+	int			colour;
 	int			tx;
 	int			ty;
 }				t_point;
@@ -41,13 +42,14 @@ typedef struct	s_map
 	size_t		width;
 	size_t		height;
 	size_t		p_amount;
-	t_point		*point;
+	t_point		*points;
 	void		*mlx_ptr;
 	void		*win_ptr;
 }				t_map;
 
-void	draw_map(void);
-t_map	map_create(int fd);
-size_t	parse_line(char *line, t_list **list);
+void			draw_map(void);
+t_map			map_create(int fd);
+size_t			parse_line(char *line, t_list **list);
+t_map			map_get_points(t_map map, t_list *list);
 
 #endif

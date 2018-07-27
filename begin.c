@@ -6,13 +6,15 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 16:40:59 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/07/25 20:59:39 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/07/27 17:55:06 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 #include <stdio.h>
+
+//CHECK ALL NULL RETURNS
 
 int		map_get(int argc, char **argv)
 {
@@ -46,6 +48,7 @@ t_map	map_create(fd)
 		map.height++;
 	}
 	map.p_amount = map.width * map.height;
+	map = map_get_points(map, list);     //last changes
 	return (map);
 }
 
@@ -54,9 +57,21 @@ int		main(int argc, char **argv)
 	int		fd;
 	t_map	map;
 
+size_t		i;
+	t_point	p;
+
 	fd = map_get(argc, argv);
 	map = map_create(fd);
 	close(fd);
+
+	i = 0;
+	while (i < map.p_amount)
+	{
+		p = map.points[i];
+		printf("[%zu] (%d, %d, %d) %d\n", i, p.x, p.y, p.z, p.colour);
+		i++;
+	}
+
 	draw_map();
 	return (0);
 }
