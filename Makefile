@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eaptekar <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 16:33:01 by eaptekar          #+#    #+#              #
-#    Updated: 2018/07/24 16:32:32 by eaptekar         ###   ########.fr        #
+#    Updated: 2018/07/30 14:21:24 by eaptekar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,12 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror -I.
 MLX		= -lmlx -framework OpenGL -framework AppKit
 LIBFT	= ./libft/libft.a
-SRC		= begin.c\
+SRC		= main.c\
+		  map.c\
 		  drawing.c\
-		  parsing.c
+		  parsing.c\
+		  transform.c\
+
 OBJ		= $(SRC:%.c=%.o)
 
 all: $(NAME)

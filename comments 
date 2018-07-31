@@ -1,0 +1,50 @@
+## FROM MAIN.C
+
+	size_t		i;
+	t_point		p;
+	t_point2d	p2;
+
+	...
+
+	i = 0;
+	printf("---------------------\n____3D_COORDINATES_____\n");
+	while (i < map.p_amount)
+	{
+		p = map.points[i];
+		printf("[%zu] (%d, %d, %d) %X\n", i, p.x, p.y, p.z, p.colour);
+		i++;
+	}
+	printf("---------------------\n\n");
+
+	...
+
+
+	i = 0;
+	printf("---------------------\n____2D_COORDINATES_____\n");
+	while (i < map.p_amount)
+	{
+		p2 = map.points_2d[i];
+		printf("[%zu] (%d, %d) %X\n", i, p2.x, p2.y, p2.colour);
+		i++;
+	}
+	printf("---------------------\n\n");
+
+	...
+
+## FROM DRAWING.C
+
+
+void	draw_points(t_map *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < map->p_amount)
+	{
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->points_2d[i].x, \
+			map->points_2d[i].y, map->points_2d[i].colour);
+		i++;
+	}
+}
+
+
