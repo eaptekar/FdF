@@ -6,7 +6,7 @@
 #    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 16:33:01 by eaptekar          #+#    #+#              #
-#    Updated: 2018/07/30 14:21:24 by eaptekar         ###   ########.fr        #
+#    Updated: 2018/08/01 19:44:13 by eaptekar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC		= main.c\
 		  map.c\
 		  drawing.c\
 		  parsing.c\
-		  transform.c\
+		  render.c\
 
 OBJ		= $(SRC:%.c=%.o)
 

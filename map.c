@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 16:56:23 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/07/31 17:01:12 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/01 19:49:51 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 //NEED TO FREE COORDS
 //CHECK ALL NULL RETURNS
 
-int		map_get(int argc, char **argv)
+int			map_open(int argc, char **argv)
 {
 	int		fd;
 
 	if (argc != 2)
-		ft_putendl_exit("usage: ./fdf <map file>", 0);
+		ft_putendl_exit("usage: ./fdf <map_name.fdf>", 0);
+	if (!ft_strrchr(argv[1], '.'))
+		ERROR("No data found.");
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		ft_putendl_exit(strerror(errno), -1);
+		ERROR(strerror(errno));
+	if ((read(fd, NULL, 0)) < 0)
+		ERROR(strerror(errno));
 	return (fd);
 }
-
 
 static t_point	newpoint(int x, int y, int z, int colour)
 {
 	t_point	point;
 
-	point.x = 25 * x;
-	point.y = 25 * y;
-	point.z = 25 * z;
+	point.x = 15 * x;
+	point.y = 15 * y;
+	point.z = 15 * z;
 	point.colour = colour;
 	return (point);
 }
@@ -43,7 +46,8 @@ t_map			map_get_points(t_map map, t_list *list)
 	int	x_p;
 	int	y_p;
 
-	map.points = ft_memalloc(map.p_amount * sizeof(t_point));
+	if (!(map.points = ft_memalloc(map.p_amount * sizeof(t_point))))
+		ERROR(strerror(errno));
 	y_p = map.height - 1;
 	while (y_p >= 0)
 	{
@@ -60,34 +64,36 @@ t_map			map_get_points(t_map map, t_list *list)
 	return (map);
 }
 
-static void	del_node(void *item, size_t size)
+static void		del_node(void *item, size_t size)
 {
 	size = 0;
 	free(item);
 }
 
-t_map	map_create(fd)
+t_map			map_create(fd)
 {
-	t_list	*list;
-	t_map	map;
 	char	*line;
 	size_t	width;
+	t_list	*list;
+	t_map	map;
 
+	ft_putstr("\033[0mParsing... \033[0m");
 	list = NULL;
 	map.height = 0;
 	ft_bzero(&map, sizeof(t_map));
 	while (get_next_line(fd, &line))
 	{
-		width = parse_line(line, &list);
+		width = parse_line(line, &list, 0);
 		free(line);
 		if (map.width == 0)
 			map.width = width;
 		else if (map.width != width)
-			ft_putendl_exit("Line lenght error", -1);
+			ERROR("Line lenght error");
 		map.height++;
 	}
 	map.p_amount = map.width * map.height;
 	map = map_get_points(map, list);
 	ft_lstdel(&list, &del_node);
+	ft_putstr("\t\033[32m ✔ \033[32m\n\033[0mRendering... \033[0m");
 	return (map);
 }

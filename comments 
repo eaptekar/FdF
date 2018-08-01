@@ -47,4 +47,10 @@ void	draw_points(t_map *map)
 	}
 }
 
+## FROM TRANSFORM.C
+
+	map->points_2d[i].x = p.x * cos(ALPHA) * cos(BETA) + \
+		p.y * sin(ALPHA) - p.z * cos(ALPHA) * sin(BETA);
+		map->points_2d[i].y = -p.x * cos(BETA) * sin(ALPHA) + \
+		p.y * cos(ALPHA) + p.z * sin(ALPHA) * sin(BETA);	
 

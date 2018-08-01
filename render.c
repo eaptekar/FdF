@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transform.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/30 14:43:09 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/07/31 20:03:23 by eaptekar         ###   ########.fr       */
+/*   Created: 2018/08/01 19:44:35 by eaptekar          #+#    #+#             */
+/*   Updated: 2018/08/01 20:36:22 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //NEED TO FREE COORDS
-//CHECK ALL NULL RETURNS
+//CHECK ALL NULL RETURNS	
 
-/*void	iso_projection(t_map *map)
+void	iso_projection(t_map *map)
 {
 	t_point		p;
 	size_t		i;
 
 	map->points_2d = ft_memalloc(map->p_amount * sizeof(t_point2d));
 	i = 0;
-	p.x -= map->center.x;
-	p.y -= map->center.y;
 	while (i < map->p_amount)
 	{
 		p = map->points[i];
-		map->points_2d[i].x = p.x * cos(BETA) - p.z * sin(BETA);
-		map->points_2d[i].y = p.x * sin(ALPHA) * sin(BETA) + \
-		p.y * cos(ALPHA) + p.z * sin(ALPHA) * cos(BETA);		
+		p.x -= map->center.x;
+		p.y -= map->center.y;
+		map->points_2d[i].x = p.x * cos(BETA) - p.y * sin(BETA);
+		map->points_2d[i].y = p.x * sin(ALPHA) * sin(BETA) - \
+		p.z * cos(ALPHA) + p.y * sin(ALPHA) * cos(BETA);
+		map->points_2d[i].x += map->center.x;
+		map->points_2d[i].y += map->center.y;
 		map->points_2d[i].colour = p.colour;
 		i++;
 	}
-}*/
+}
 
 void	rotate_x(t_map *map, double ang)
 {
@@ -44,11 +46,11 @@ void	rotate_x(t_map *map, double ang)
 	while (i < map->p_amount)
 	{
 		p = map->points[i];
-//		p.x -= map->center.x;
-//		p.y -= map->center.y;
-		map->points[i].x = p.x;
-		map->points[i].y = p.y * cos(ang) - p.z * sin(ang);// + map->center.x;
-		map->points[i].z = p.y * sin(ang) + p.z * cos(ang);// + map->center.y;
+		p.x -= map->center.x;
+		p.y -= map->center.y;
+		map->points[i].x = p.x + map->center.x;
+		map->points[i].y = p.y * cos(ang) - p.z * sin(ang) + map->center.y;
+		map->points[i].z = p.y * sin(ang) + p.z * cos(ang);
 		i++;
 	}
 }
@@ -62,11 +64,11 @@ void	rotate_y(t_map *map, double ang)
 	while (i < map->p_amount)
 	{
 		p = map->points[i];
-//		p.x -= map->center.x;
-//		p.y -= map->center.y;
-		map->points[i].x = p.x * cos(ang) + p.z * sin(ang);// + map->center.x;
-		map->points[i].y = p.y;
-		map->points[i].z = -p.x * sin(ang) + p.z * cos(ang);// + map->center.y;
+		p.x -= map->center.x;
+		p.y -= map->center.y;
+		map->points[i].x = p.x * cos(ang) + p.z * sin(ang) + map->center.x;
+		map->points[i].y = p.y + map->center.y;
+		map->points[i].z = -p.x * sin(ang) + p.z * cos(ang);
 		i++;
 	}
 }
@@ -80,10 +82,10 @@ void	rotate_z(t_map *map, double ang)
 	while (i < map->p_amount)
 	{
 		p = map->points[i];
-//		p.x -= map->center.x;
-//		p.y -= map->center.y;
-		map->points[i].x = p.x * cos(ang) - p.y * sin(ang);// + map->center.x;
-		map->points[i].y = p.x * sin(ang) + p.y * cos(ang);// + map->center.y;
+		p.x -= map->center.x;
+		p.y -= map->center.y;
+		map->points[i].x = p.x * cos(ang) - p.y * sin(ang) + map->center.x;
+		map->points[i].y = p.x * sin(ang) + p.y * cos(ang) + map->center.y;
 		map->points[i].z = p.z;
 		map->points[i].colour = p.colour;
 		i++;
@@ -105,7 +107,6 @@ void	orthogonal(t_map *map)
 		map->points_2d[i].colour = p.colour;
 		i++;
 	}
-//	return (map);
 }
 
 void	centring(t_map *map)
@@ -126,10 +127,10 @@ void	centring(t_map *map)
 	}
 }
 
-void	transform(t_map *map)
+void	render(t_map *map)
 {
 	scr_size(map);
 	centring(map);
-//	iso_projection(map);
-	orthogonal(map);
+	iso_projection(map);
+//	orthogonal(map);
 }
