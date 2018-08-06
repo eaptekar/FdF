@@ -6,13 +6,13 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 16:32:50 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/01 17:49:56 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/02 15:47:18 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//NEED TO FREE COORDS
+//NEED TO FREE COORDS BEFORE EXIT
 //CHECK ALL NULL RETURNS
 
 static int		ft_valid_signs(char *str)

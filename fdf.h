@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 17:41:46 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/01 20:06:26 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/06 15:43:08 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@
 # define PURPLE		0xFF00FF
 # define DEFAULT	WHITE
 
-# define ALPHA		0.463646716
-# define BETA		0.785398
-# define GAMMA		0
-# define ANGLE		5
+// # define ALPHA		0.463646716
+// # define BETA		0.785398
+// # define GAMMA		0
+# define ANGLE		10
 
 # define ERROR(X)		ft_putendl_exit(X, -1)
 
@@ -74,12 +74,15 @@ typedef struct	s_map
 	int			scr_w;
 	int			scr_h;
 	int			z_size;
-	double		ang_a;
-	double		ang_b;
-	double		ang_g;
-	double		ang;  //for tests
+	int			xscale;
+	int			yscale;
+	double		alpha;
+	double		beta;
+	double		gamma;
+	double		ang;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
 }				t_map;
 
 int				map_open(int argc, char **argv);
@@ -93,6 +96,7 @@ void			rotate_y(t_map *map, double ang);
 void			rotate_z(t_map *map, double ang);
 
 void			scr_size(t_map *map);
+void			centring(t_map *map);
 
 void			draw_map(t_map *map);
 

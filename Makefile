@@ -6,7 +6,7 @@
 #    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 16:33:01 by eaptekar          #+#    #+#              #
-#    Updated: 2018/08/01 19:44:13 by eaptekar         ###   ########.fr        #
+#    Updated: 2018/08/06 15:42:25 by eaptekar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ MLX		= -lmlx -framework OpenGL -framework AppKit
 LIBFT	= ./libft/libft.a
 SRC		= main.c\
 		  map.c\
-		  drawing.c\
+		  drawing2.c\
 		  parsing.c\
-		  render.c\
+		  render2.c\
 
 OBJ		= $(SRC:%.c=%.o)
 

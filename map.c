@@ -6,24 +6,24 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 16:56:23 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/01 19:49:51 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/06 13:52:50 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//NEED TO FREE COORDS
+//NEED TO FREE COORDS BEFORE EXIT
 //CHECK ALL NULL RETURNS
 
-int			map_open(int argc, char **argv)
+int				map_open(int argc, char **argv)
 {
 	int		fd;
 
 	if (argc != 2)
 		ft_putendl_exit("usage: ./fdf <map_name.fdf>", 0);
-	if (!ft_strrchr(argv[1], '.'))
+	if (!ft_strstr(argv[1], ".fdf"))
 		ERROR("No data found.");
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
+	if (!(fd = open(argv[1], O_RDONLY)))
 		ERROR(strerror(errno));
 	if ((read(fd, NULL, 0)) < 0)
 		ERROR(strerror(errno));
@@ -54,7 +54,7 @@ t_map			map_get_points(t_map map, t_list *list)
 		x_p = map.width - 1;
 		while (x_p >= 0)
 		{
-			map.points[y_p * map.width + x_p] = 
+			map.points[y_p * map.width + x_p] =\
 				newpoint(x_p, y_p, *(int*)(list->content), list->color);
 			x_p--;
 			list = list->next;
@@ -70,7 +70,7 @@ static void		del_node(void *item, size_t size)
 	free(item);
 }
 
-t_map			map_create(fd)
+t_map			map_create(int fd)
 {
 	char	*line;
 	size_t	width;
@@ -91,7 +91,8 @@ t_map			map_create(fd)
 			ERROR("Line lenght error");
 		map.height++;
 	}
-	map.p_amount = map.width * map.height;
+	if (!(map.p_amount = map.width * map.height))
+		ERROR("No data found.");
 	map = map_get_points(map, list);
 	ft_lstdel(&list, &del_node);
 	ft_putstr("\t\033[32m ✔ \033[32m\n\033[0mRendering... \033[0m");
