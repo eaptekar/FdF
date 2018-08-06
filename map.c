@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/28 16:56:23 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/06 13:52:50 by eaptekar         ###   ########.fr       */
+/*   Created: 2018/08/06 20:28:43 by eaptekar          #+#    #+#             */
+/*   Updated: 2018/08/06 20:57:25 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int				map_open(int argc, char **argv)
 	return (fd);
 }
 
-static t_point	newpoint(int x, int y, int z, int colour)
+static t_point	newpoint(int x, int y, int z, int color)
 {
 	t_point	point;
 
-	point.x = 15 * x;
-	point.y = 15 * y;
-	point.z = 15 * z;
-	point.colour = colour;
+	point.x = 20 * x;
+	point.y = 20 * y;
+	point.z = 5 * z;
+	point.color = color;
 	return (point);
 }
 

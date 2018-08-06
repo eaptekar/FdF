@@ -1,45 +1,45 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/15 16:33:01 by eaptekar          #+#    #+#              #
-#    Updated: 2018/08/06 15:42:25 by eaptekar         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = fdf
 
-NAME	= fdf
-CC		= gcc
-FLAGS	= -Wall -Wextra -Werror -I.
-MLX		= -lmlx -framework OpenGL -framework AppKit
-LIBFT	= ./libft/libft.a
-SRC		= main.c\
-		  map.c\
-		  drawing2.c\
-		  parsing.c\
-		  render2.c\
+FLAGS = -Wall -Wextra -Werror -I fdf.h
 
-OBJ		= $(SRC:%.c=%.o)
+MLX = -lmlx -framework AppKit -framework OpenGl
+
+LIB = ./libft/libft.a
+
+SRC_FILES = 	main.c \
+				map.c \
+				centring.c \
+				image.c \
+				keys.c \
+				rotating.c \
+				add_info.c \
+				colors.c \
+				parsing.c \
+
+BIN_FILES = $(SRC_FILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) -o $(NAME) $(LIBFT) $(OBJ) $(MLX)
+makelib:
+	make -C ./libft/
+
+libclean:
+	make -C ./libft/ clean
+
+libfclean:
+	make -C ./libft/ fclean
+
+$(NAME): $(BIN_FILES)
+	make -C ./libft/
+	gcc -o $(NAME) $(BIN_FILES) $(FLAGS) $(MLX) $(LIB)
 
 %.o: %.c
-	@$(CC) $(FLAGS) -o $@ -c $<
-	@echo "Compiling ..."
+	gcc $(FLAGS) -c -o $@ $<
 
-$(LIBFT):
-	@make -C libft
+clean: libclean
+	/bin/rm -f $(BIN_FILES)
 
-clean:
-	@rm -rf $(OBJ)
-	@make -C libft fclean	
-
-fclean: clean
-	@rm -rf $(NAME)
+fclean: libfclean clean
+	/bin/rm -f $(NAME)
 
 re: fclean all

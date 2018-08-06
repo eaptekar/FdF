@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 13:33:02 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/01 19:59:22 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/06 20:07:51 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ int				get_next_line(const int fd, char **line);
 void			ft_putendl_exit(const char *str, int exit_code);
 int				hex_to_int(const char *str);
 double			deg_to_rad(double degree);
+long			ft_atol_base(const char *str, int base);
+int				ft_isspace(int c);
 
 #endif
