@@ -6,7 +6,7 @@
 #    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 13:42:15 by eaptekar          #+#    #+#              #
-#    Updated: 2018/08/06 20:08:10 by eaptekar         ###   ########.fr        #
+#    Updated: 2018/08/07 21:20:55 by eaptekar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -I. -c
+FLAGS = -Wall -Wextra -Werror -I includes/libft.h -c
 
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	  ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
@@ -29,7 +29,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	  ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_range.c ft_sqrt.c ft_power.c \
 	  ft_abs.c ft_swap.c get_next_line.c ft_putendl_exit.c hex_to_int.c \
-	  deg_to_rad.c ft_atol_base.c ft_isspace.c
+	  deg_to_rad.c
 
 OBJ = $(SRC:%.c=%.o)
 

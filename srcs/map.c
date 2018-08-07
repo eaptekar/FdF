@@ -6,14 +6,11 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:28:43 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/06 20:57:25 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/07 21:23:59 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-//NEED TO FREE COORDS BEFORE EXIT
-//CHECK ALL NULL RETURNS
 
 int				map_open(int argc, char **argv)
 {
@@ -30,14 +27,14 @@ int				map_open(int argc, char **argv)
 	return (fd);
 }
 
-static t_point	newpoint(int x, int y, int z, int color)
+static t_point	newpoint(int x, int y, int z, long int color)
 {
 	t_point	point;
 
 	point.x = 20 * x;
 	point.y = 20 * y;
 	point.z = 5 * z;
-	point.color = color;
+	point.colour = color;
 	return (point);
 }
 

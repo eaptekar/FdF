@@ -6,14 +6,11 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:48:57 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/06 20:49:03 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/07 21:24:09 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-//NEED TO FREE COORDS BEFORE EXIT
-//CHECK ALL NULL RETURNS
 
 static int		ft_valid_signs(char *str)
 {
@@ -56,10 +53,10 @@ static void		clean_array(char **str)
 
 size_t			parse_line(char *line, t_list **list, size_t j)
 {
-	size_t	width;
-	char	**coords;
-	int		x_coord;
-	int		colour;
+	size_t		width;
+	char		**coords;
+	int			x_coord;
+	long int	colour;
 
 	if (!line)
 		ERROR("Failed to read file.");

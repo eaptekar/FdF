@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 13:33:02 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/06 20:07:51 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/07 21:21:24 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_string
 typedef struct	s_list
 {
 	void			*content;
-	int				color;
+	long int		color;
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
@@ -88,7 +88,8 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(const char *s, int fd);
 void			ft_putendl_fd(const char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-t_list			*ft_lstnew(void const *content, int color, size_t content_size);
+t_list			*ft_lstnew(void const *content, long int color, \
+	size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
@@ -101,9 +102,7 @@ int				ft_abs(int nb);
 void			ft_swap(void **a, void **b);
 int				get_next_line(const int fd, char **line);
 void			ft_putendl_exit(const char *str, int exit_code);
-int				hex_to_int(const char *str);
+long int		hex_to_int(const char *str);
 double			deg_to_rad(double degree);
-long			ft_atol_base(const char *str, int base);
-int				ft_isspace(int c);
 
 #endif

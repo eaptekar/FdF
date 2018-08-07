@@ -6,13 +6,13 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:10:27 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/07/25 17:13:44 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/07 14:35:21 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, int color, size_t content_size)
+t_list	*ft_lstnew(void const *content, long int color, size_t content_size)
 {
 	t_list	*tmp;
 

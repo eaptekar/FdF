@@ -1,45 +1,71 @@
-NAME = fdf
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/08/07 17:02:30 by eaptekar          #+#    #+#              #
+#    Updated: 2018/08/07 19:55:44 by eaptekar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -I fdf.h
+NAME	= fdf
 
-MLX = -lmlx -framework AppKit -framework OpenGl
+CC		= gcc
+FLAGS	= -Wall -Werror -Wextra
 
-LIB = ./libft/libft.a
+SRCS 	= main.c \
+		  map.c \
+		  transform.c \
+		  image.c \
+		  keys.c \
+		  rotating.c \
+		  parsing.c \
+		  frame.c \
 
-SRC_FILES = 	main.c \
-				map.c \
-				centring.c \
-				image.c \
-				keys.c \
-				rotating.c \
-				add_info.c \
-				colors.c \
-				parsing.c \
 
-BIN_FILES = $(SRC_FILES:.c=.o)
+LIBFT 	= -L$(P_LFT) -lft
+MLX 	= -lmlx -framework OpenGL -framework AppKit
+
+SRC_DIR = srcs/
+OBJ_DIR = obj/
+I_INC 	= includes
+I_LFT 	= libft/
+P_LFT 	= libft
+
+OC		=\033[0m
+GCOL	=\033[32;05m
+YCOL	=\033[33m
+
+INC = $(addprefix -I,$(I_INC) $(I_LFT))
+SRC = $(addprefix $(SRC_DIR),$(SRCS))
+OBJ = $(addprefix $(OBJ_DIR),$(OBJS))
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-makelib:
-	make -C ./libft/
+$(NAME): $(OBJ)
+	@make -C $(P_LFT)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX)
+	@echo "\n$(GCOL)$(NAME) is ready$(OC)"
 
-libclean:
-	make -C ./libft/ clean
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@echo "$(GCOL)\c"
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) -o $@ -c $^ $(INC)
+	@echo -n ████████████
+	@echo "$(OC)\c"
 
-libfclean:
-	make -C ./libft/ fclean
+clean:
+	@make -C $(P_LFT) clean
+	@rm -rf $(OBJ_DIR)
+	@echo "$(YCOL)removing ./obj/$(OC)"
 
-$(NAME): $(BIN_FILES)
-	make -C ./libft/
-	gcc -o $(NAME) $(BIN_FILES) $(FLAGS) $(MLX) $(LIB)
-
-%.o: %.c
-	gcc $(FLAGS) -c -o $@ $<
-
-clean: libclean
-	/bin/rm -f $(BIN_FILES)
-
-fclean: libfclean clean
-	/bin/rm -f $(NAME)
+fclean: clean
+	@make -C $(P_LFT) fclean
+	@rm -f $(NAME)
+	@echo "$(YCOL)$(NAME) removed$(OC)"
 
 re: fclean all
