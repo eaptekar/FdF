@@ -6,33 +6,12 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:57:16 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 22:09:59 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:34:06 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void				key_change_angle(int kcode, t_map *map)
-{
-	if (kcode == K_W)
-		map->alpha -= map->speed;
-	else if (kcode == K_S)
-		map->alpha += map->speed;
-	else if (kcode == K_A)
-		map->beta -= map->speed;
-	else if (kcode == K_D)
-		map->beta += map->speed;
-	else if (kcode == K_Q)
-		map->gamma -= map->speed;
-	else if (kcode == K_E)
-		map->gamma += map->speed;
-	map->alpha >= 360 ? map->alpha -= 360 : (0);
-	map->beta >= 360 ? map->beta -= 360 : (0);
-	map->gamma >= 360 ? map->gamma -= 360 : (0);
-	map->alpha <= -360 ? map->alpha += 360 : (0);
-	map->beta <= -360 ? map->beta += 360 : (0);
-	map->gamma <= -360 ? map->gamma += 360 : (0);
-}
+#include <stdio.h>
 
 static t_point		rotating_x(t_point *px, t_point cntr, int ang)
 {

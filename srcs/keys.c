@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:58:59 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 22:07:15 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 14:03:47 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int			key_hook(int kcode, t_map *map)
 	else if (kcode >= K_LEFT && kcode <= K_UP)
 		key_shift(kcode, map);
 	else if ((kcode >= K_A && kcode <= K_D) || (kcode >= K_Q && kcode <= K_E))
-	{
 		key_rotate(kcode, map);
-		key_change_angle(kcode, map);
-	}
 	else if (kcode == K_PLUS || kcode == K_MINUS)
 		key_scale(kcode, map);
 	else if (kcode == K_SPMINUS || kcode == K_SPPLUS)

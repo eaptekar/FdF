@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:48:57 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 21:24:09 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:40:11 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t			parse_line(char *line, t_list **list, size_t j)
 	int			x_coord;
 	long int	colour;
 
-	if (!line)
+	if (!line || line[0] == '\0' || line[0] == '\n')
 		ERROR("Failed to read file.");
 	width = 0;
 	if (!(coords = ft_strsplit(line, ' ')))

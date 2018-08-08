@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:28:43 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 21:23:59 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 14:44:14 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_point	newpoint(int x, int y, int z, long int color)
 	return (point);
 }
 
-t_map			map_get_points(t_map map, t_list *list)
+static t_map	map_get_points(t_map map, t_list *list)
 {
 	int	x_p;
 	int	y_p;

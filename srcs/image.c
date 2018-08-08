@@ -6,26 +6,17 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:35:19 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 22:20:08 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:33:36 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		bonus_info(t_map *map)
-{
-	mlx_string_put(map->mlx_ptr, map->win_ptr, (map->scr_w / 2) - 71, map->scr_h - 31, 0x80AAFF,
-		"X:    Y:    Z:");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, (map->scr_w / 2) - 51, map->scr_h - 31, 0xFF80AA,
-		ft_itoa(map->alpha));
-	mlx_string_put(map->mlx_ptr, map->win_ptr, (map->scr_w / 2) + 11, map->scr_h - 31, 0xFF80AA,
-		ft_itoa(map->beta));
-	mlx_string_put(map->mlx_ptr, map->win_ptr, (map->scr_w / 2) + 71, map->scr_h - 31, 0xFF80AA,
-		ft_itoa(map->gamma));
-}
-
 static void		put_legend(t_map *map)
 {
+	char	*speed;
+
+	speed = ft_itoa(map->speed / 2);
 	draw_frame(map);
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 12, 11, 0x80AAFF,
 		"Rotate X with W or S");
@@ -41,11 +32,11 @@ static void		put_legend(t_map *map)
 		"Change zoom with + or - on Numpad");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, map->scr_w - 121, 11, 0xFFAA80,
 		"Exit = Esc");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, map->scr_w - 101, map->scr_h - 31, 0xFF80AA,
-		"Speed: ");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, map->scr_w - 31, map->scr_h - 31, 0xFF80AA,
-		ft_itoa(map->speed / 2));
-	bonus_info(map);
+	mlx_string_put(map->mlx_ptr, map->win_ptr, map->scr_w - 101, \
+		map->scr_h - 31, 0xFF80AA, "Speed: ");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, map->scr_w - 31, \
+		map->scr_h - 31, 0xFF80AA, speed);
+	free(speed);
 }
 
 static int		pixel2image(t_map *map, int x, int y, int colour)

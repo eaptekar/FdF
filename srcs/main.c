@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:18:33 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 22:18:09 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:41:43 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,12 @@ static void	scr_size(t_map *map)
 	}
 }
 
-void		ft_init(t_map *map)
+static void	ft_init(t_map *map)
 {
 	scr_size(map);
 	centring(map);
 	moving_center(map);
 	map->speed = 10;
-	map->alpha = 0;
-	map->beta = 0;
-	map->gamma = 0;
 }
 
 int			main(int argc, char **argv)
@@ -55,9 +52,9 @@ int			main(int argc, char **argv)
 	ft_init(&map);
 	map.mlx_ptr = mlx_init();
 	map.win_ptr = mlx_new_window(map.mlx_ptr, map.scr_w, map.scr_h, "FdF");
-	ft_putstr("\t\033[32m ✔ \033[32m\n");
-	ft_putendl("\n\e[0mPress [ESC] to quit FdF \e[0m\n");
 	render(&map);
+	ft_putstr(" \033[32m ✔ \033[32m\n");
+	ft_putendl("\nPress [ESC] to quit FdF\n");
 	mlx_hook(map.win_ptr, 17, 1L << 17, exit_x, &map);
 	mlx_hook(map.win_ptr, 2, 0, key_hook, &map);
 	mlx_loop(map.mlx_ptr);

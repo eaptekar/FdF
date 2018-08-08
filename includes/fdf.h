@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:22:31 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 22:06:50 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 14:49:21 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@
 
 # define ERROR(X)		ft_putendl_exit(X, -1)
 
-typedef struct		s_var
-{
-	size_t			x;
-	size_t			y;
-}					t_var;
-
 typedef struct		s_point
 {
 	double			x;
@@ -73,9 +67,6 @@ typedef	struct		s_map
 	int				scr_w;
 	int				scr_h;
 	int				speed;
-	int				alpha;
-	int				beta;
-	int				gamma;
 	t_point			*points;
 	t_point			center;
 	void			*mlx_ptr;
@@ -83,19 +74,17 @@ typedef	struct		s_map
 	void			*img_ptr;
 }					t_map;
 
-int					key_hook(int	keycode, t_map *map);
-void				render(t_map *map);
-void				centring(t_map *map);
-void				scaling(t_map *map, double scale);
-void				moving_center(t_map *map);
-void				shifting(t_map *map, int shift_x, int shift_y);
-void				making_pixel(t_point *pixel, char *str, int row, int colum);
-void				rotating(t_map *map, int axis, int angle);
 int					map_open(int argc, char **argv);
 t_map				map_create(int fd);
 size_t				parse_line(char *line, t_list **list, size_t j);
+void				centring(t_map *map);
+void				moving_center(t_map *map);
+void				shifting(t_map *map, int shift_x, int shift_y);
+void				render(t_map *map);
 void				draw_frame(t_map *map);
+void				scaling(t_map *map, double scale);
 int					exit_x(void *param);
-void				key_change_angle(int kcode, t_map *map);
+int					key_hook(int	keycode, t_map *map);
+void				rotating(t_map *map, int axis, int angle);
 
 #endif

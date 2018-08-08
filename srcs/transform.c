@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 19:39:42 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/07 21:25:16 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/08 14:52:32 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ void	centring(t_map *map)
 
 void	moving_center(t_map *map)
 {
-	t_var	tmp;
+	size_t	x;
+	size_t	y;
 
-	tmp.y = (map->scr_h) / 2 - map->center.y;
-	tmp.x = (map->scr_w) / 2 - map->center.x;
-	shifting(map, tmp.x, tmp.y);
+	y = (map->scr_h) / 2 - map->center.y;
+	x = (map->scr_w) / 2 - map->center.x;
+	shifting(map, x, y);
 }
 
 void	shifting(t_map *map, int shift_x, int shift_y)
