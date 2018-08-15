@@ -6,29 +6,54 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:48:57 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 17:40:11 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:56:14 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int		ft_is_color(char *str)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (str[i] != ',')
+		i++;
+	if (str[i + 1] == 48 && (str[i + 2] == 88 || str[i + 2] == 120))
+	{
+		i += 3;
+		while (str && str[i])
+		{
+			if ((str[i] >= 48 && str[i] <= 57) || (str[i] >= 65 && \
+				str[i] <= 70) || (str[i] >= 97 && str[i] <= 102))
+				i++;
+			else
+				return (0);
+			j++;
+		}
+	}
+	else
+		return (0);
+	if (j > 6)
+		return (0);
+	return (1);
+}
 
 static int		ft_valid_signs(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (str && str[i])
+	if (ft_strchr(str, ','))
 	{
-		if (ft_strchr(str, ','))
-		{
-			if (str[i] == 44 || str[i] == 45 || (str[i] >= 48 && str[i] <= 57) \
-				|| (str[i] >= 65 && str[i] <= 70) || str[i] == 88 || \
-				str[i] == 120 || (str[i] >= 97 && str[i] <= 102))
-				i++;
-			else
-				return (0);
-		}
-		if (!ft_strchr(str, ','))
+		if (!ft_is_color(str))
+			return (0);
+	}
+	else
+	{
+		while (str && str[i])
 		{
 			if (str[i] == 45 || (str[i] >= 48 && str[i] <= 57))
 				i++;
@@ -46,9 +71,10 @@ static void		clean_array(char **str)
 	i = 0;
 	while (str[i])
 	{
-		ft_memdel((void *)&str[i++]);
+		free(str[i]);
+		i++;
 	}
-	ft_memdel((void *)&str);
+	free(str);
 }
 
 size_t			parse_line(char *line, t_list **list, size_t j)

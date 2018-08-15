@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:18:33 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 17:41:43 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:33:27 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	ft_init(t_map *map)
 	centring(map);
 	moving_center(map);
 	map->speed = 10;
+	map->zoom = 10;
 }
 
 int			main(int argc, char **argv)

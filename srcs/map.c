@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:28:43 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 14:44:14 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:43:57 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static t_point	newpoint(int x, int y, int z, long int color)
 {
 	t_point	point;
 
-	point.x = 20 * x;
-	point.y = 20 * y;
+	point.x = 15 * x;
+	point.y = 15 * y;
 	point.z = 5 * z;
 	point.colour = color;
 	return (point);
@@ -88,8 +88,8 @@ t_map			map_create(int fd)
 			ERROR("Line lenght error");
 		map.height++;
 	}
-	if (!(map.p_amount = map.width * map.height))
-		ERROR("No data found.");
+	if (!(map.p_amount = map.width * map.height) || map.p_amount == 1)
+		ERROR("No data found (or only one dot).");
 	map = map_get_points(map, list);
 	ft_lstdel(&list, &del_node);
 	ft_putstr("\t\033[32m ✔ \033[32m\n\033[0mRendering... \033[0m");

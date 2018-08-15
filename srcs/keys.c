@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:58:59 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 14:03:47 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:37:13 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,33 @@ int			exit_x(void *param)
 static void	key_scale(int kcode, t_map *map)
 {
 	if (kcode == K_PLUS)
-		scaling(map, 1.25);
+	{
+		if (map->zoom <= 19)
+		{
+			map->zoom++;
+			scaling(map, 1.25);
+		}
+	}
 	else if (kcode == K_MINUS)
-		scaling(map, 0.8);
+	{
+		if (map->zoom >= 2)
+		{
+			map->zoom--;
+			scaling(map, 0.8);
+		}
+	}
+}
+
+static void	key_shift(int kcode, t_map *map)
+{
+	if (kcode == K_LEFT)
+		shifting(map, -map->speed, 0);
+	else if (kcode == K_RIGHT)
+		shifting(map, map->speed, 0);
+	else if (kcode == K_DOWN)
+		shifting(map, 0, map->speed);
+	else if (kcode == K_UP)
+		shifting(map, 0, -map->speed);
 	else if (kcode == K_SPMINUS)
 	{
 		if (map->speed >= 4)
@@ -35,18 +59,6 @@ static void	key_scale(int kcode, t_map *map)
 		if (map->speed <= 28)
 			map->speed += 2;
 	}
-}
-
-static void	key_shift(int kcode, t_map *map)
-{
-	if (kcode == K_LEFT)
-		shifting(map, -map->speed, 0);
-	if (kcode == K_RIGHT)
-		shifting(map, map->speed, 0);
-	if (kcode == K_DOWN)
-		shifting(map, 0, map->speed);
-	if (kcode == K_UP)
-		shifting(map, 0, -map->speed);
 }
 
 static void	key_rotate(int kcode, t_map *map)
@@ -79,7 +91,7 @@ int			key_hook(int kcode, t_map *map)
 	else if (kcode == K_PLUS || kcode == K_MINUS)
 		key_scale(kcode, map);
 	else if (kcode == K_SPMINUS || kcode == K_SPPLUS)
-		key_scale(kcode, map);
+		key_shift(kcode, map);
 	render(map);
 	return (0);
 }

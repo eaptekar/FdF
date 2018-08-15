@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:22:31 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 14:49:21 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:33:39 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef	struct		s_map
 	int				scr_w;
 	int				scr_h;
 	int				speed;
+	int				zoom;
 	t_point			*points;
 	t_point			center;
 	void			*mlx_ptr;

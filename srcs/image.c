@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:35:19 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 17:33:36 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:41:34 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,20 @@ static void		drawing_line(t_map *map, t_point a, t_point b)
 	y = a.y;
 	if (fabs(b.y - a.y) > fabs(b.x - a.x))
 	{
-		while (a.y > b.y ? y >= b.y : y <= b.y)
+		while (a.y > b.y ? y >= b.y : y < b.y)
 		{
-			x = (y - a.y) / (b.y - a.y) * (b.x - a.x) + a.x;
+			x = (y - a.y) / ((b.y - a.y) == 0 ? 1 : (b.y - a.y)) \
+			* (b.x - a.x) + a.x;
 			pixel2image(map, x, y, a.colour);
 			b.y > a.y ? y++ : y--;
 		}
 	}
 	else
 	{
-		while (a.x > b.x ? x >= b.x : x <= b.x)
+		while (a.x > b.x ? x >= b.x : x < b.x)
 		{
-			y = (x - a.x) / (b.x - a.x) * (b.y - a.y) + a.y;
+			y = (x - a.x) / ((b.x - a.x) == 0 ? 1 : (b.x - a.x)) \
+			* (b.y - a.y) + a.y;
 			pixel2image(map, x, y, a.colour);
 			b.x > a.x ? x++ : x--;
 		}

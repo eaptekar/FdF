@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eaptekar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 19:27:34 by eaptekar          #+#    #+#             */
-/*   Updated: 2017/11/27 16:28:07 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:19:37 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static char	**dosplit(const char *s, char c, char **arr, size_t i)
 	size_t	in;
 
 	j = 0;
+	while (s[i] == c && s[i])
+		i++;
 	while (s[i])
 	{
-		while (s[i] == c && s[i])
-			i++;
 		in = i;
 		while (s[i] != c && s[i])
 			i++;
@@ -55,6 +55,8 @@ static char	**dosplit(const char *s, char c, char **arr, size_t i)
 			free(arr);
 			return (NULL);
 		}
+		while (s[i] == c && s[i])
+			i++;
 		j++;
 	}
 	return (arr);
