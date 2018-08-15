@@ -6,7 +6,7 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 20:22:31 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/15 13:33:39 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 16:42:07 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@
 # define K_SPMINUS 	33
 # define K_SPPLUS 	30
 
-# define WHITE		0x00FFFFFF
-# define RED		0x00FE0000
-# define GREEN		0x0000FF00
-# define BLUE		0x000000FF
-# define CYAN		0x0000FFFF
-# define YELLOW		0x00FFFF00
-# define PURPLE		0x00FF00FF
+# define WHITE		0xFFFFFF
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define BLUE		0x0000FF
+# define CYAN		0x00FFFF
+# define YELLOW		0xFFFF00
+# define PURPLE		0xFF00FF
 # define DEFAULT	WHITE
 
 # define ERROR(X)		ft_putendl_exit(X, -1)

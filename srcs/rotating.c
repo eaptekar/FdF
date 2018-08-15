@@ -6,12 +6,11 @@
 /*   By: eaptekar <eaptekar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:57:16 by eaptekar          #+#    #+#             */
-/*   Updated: 2018/08/08 17:34:06 by eaptekar         ###   ########.fr       */
+/*   Updated: 2018/08/15 16:39:21 by eaptekar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 static t_point		rotating_x(t_point *px, t_point cntr, int ang)
 {
